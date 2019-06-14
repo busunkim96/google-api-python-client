@@ -72,7 +72,7 @@ h1, h2, h3 {
 
 </style>
 
-<h1><a href="appengine_v1beta.html">Google App Engine Admin API</a> . <a href="appengine_v1beta.apps.html">apps</a> . <a href="appengine_v1beta.apps.authorizedDomains.html">authorizedDomains</a></h1>
+<h1><a href="appengine_v1beta.html">App Engine Admin API</a> . <a href="appengine_v1beta.apps.html">apps</a> . <a href="appengine_v1beta.apps.authorizedDomains.html">authorizedDomains</a></h1>
 <h2>Instance Methods</h2>
 <p class="toc_element">
   <code><a href="#list">list(appsId, pageSize=None, pageToken=None, x__xgafv=None)</a></code></p>
@@ -98,13 +98,13 @@ Returns:
   An object of the form:
 
     { # Response message for AuthorizedDomains.ListAuthorizedDomains.
-    "nextPageToken": "A String", # Continuation token for fetching the next page of results.
     "domains": [ # The authorized domains belonging to the user.
       { # A domain that a user has been authorized to administer. To authorize use of a domain, verify ownership via Webmaster Central (https://www.google.com/webmasters/verification/home).
-        "name": "A String", # Full path to the AuthorizedDomain resource in the API. Example: apps/myapp/authorizedDomains/example.com.@OutputOnly
         "id": "A String", # Fully qualified domain name of the domain authorized for use. Example: example.com.
+        "name": "A String", # Full path to the AuthorizedDomain resource in the API. Example: apps/myapp/authorizedDomains/example.com.@OutputOnly
       },
     ],
+    "nextPageToken": "A String", # Continuation token for fetching the next page of results.
   }</pre>
 </div>
 

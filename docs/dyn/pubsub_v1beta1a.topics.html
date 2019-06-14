@@ -72,7 +72,7 @@ h1, h2, h3 {
 
 </style>
 
-<h1><a href="pubsub_v1beta1a.html">Google Cloud Pub/Sub API</a> . <a href="pubsub_v1beta1a.topics.html">topics</a></h1>
+<h1><a href="pubsub_v1beta1a.html">Cloud Pub/Sub API</a> . <a href="pubsub_v1beta1a.topics.html">topics</a></h1>
 <h2>Instance Methods</h2>
 <p class="toc_element">
   <code><a href="#create">create(body, x__xgafv=None)</a></code></p>
@@ -230,6 +230,13 @@ Args:
 { # Request for the Publish method.
     "topic": "A String", # The message in the request will be published on this topic.
     "message": { # A message data and its labels. # The message to publish.
+      "messageId": "A String", # ID of this message assigned by the server at publication time. Guaranteed
+          # to be unique within the topic. This value may be read by a subscriber
+          # that receives a PubsubMessage via a Pull call or a push delivery. It must
+          # not be populated by a publisher in a Publish call.
+      "data": "A String", # The message payload.
+      "publishTime": "A String", # The time at which the message was published.
+          # The time is milliseconds since the UNIX epoch.
       "label": [ # Optional list of labels for this message. Keys in this collection must
           # be unique.
         { # A key-value pair applied to a given object.
@@ -255,13 +262,6 @@ Args:
               #   spanner.google.com/universe
         },
       ],
-      "data": "A String", # The message payload.
-      "publishTime": "A String", # The time at which the message was published.
-          # The time is milliseconds since the UNIX epoch.
-      "messageId": "A String", # ID of this message assigned by the server at publication time. Guaranteed
-          # to be unique within the topic. This value may be read by a subscriber
-          # that receives a PubsubMessage via a Pull call or a push delivery. It must
-          # not be populated by a publisher in a Publish call.
     },
   }
 
@@ -303,6 +303,13 @@ Args:
     "topic": "A String", # The messages in the request will be published on this topic.
     "messages": [ # The messages to publish.
       { # A message data and its labels.
+        "messageId": "A String", # ID of this message assigned by the server at publication time. Guaranteed
+            # to be unique within the topic. This value may be read by a subscriber
+            # that receives a PubsubMessage via a Pull call or a push delivery. It must
+            # not be populated by a publisher in a Publish call.
+        "data": "A String", # The message payload.
+        "publishTime": "A String", # The time at which the message was published.
+            # The time is milliseconds since the UNIX epoch.
         "label": [ # Optional list of labels for this message. Keys in this collection must
             # be unique.
           { # A key-value pair applied to a given object.
@@ -328,13 +335,6 @@ Args:
                 #   spanner.google.com/universe
           },
         ],
-        "data": "A String", # The message payload.
-        "publishTime": "A String", # The time at which the message was published.
-            # The time is milliseconds since the UNIX epoch.
-        "messageId": "A String", # ID of this message assigned by the server at publication time. Guaranteed
-            # to be unique within the topic. This value may be read by a subscriber
-            # that receives a PubsubMessage via a Pull call or a push delivery. It must
-            # not be populated by a publisher in a Publish call.
       },
     ],
   }

@@ -113,14 +113,14 @@ Returns:
     { # The main language translation response message.
     "translations": [ # Translations contains list of translation results of given text
       {
-        "translatedText": "A String", # Text translated into the target language.
-        "model": "A String", # The `model` type used for this translation. Valid values are
-            # listed in public documentation. Can be different from requested `model`.
-            # Present only if specific model type was explicitly requested.
         "detectedSourceLanguage": "A String", # The source language of the initial request, detected automatically, if
             # no source language was passed within the initial request. If the
             # source language was passed, auto-detection of the language will not
             # occur and this field will be empty.
+        "model": "A String", # The `model` type used for this translation. Valid values are
+            # listed in public documentation. Can be different from requested `model`.
+            # Present only if specific model type was explicitly requested.
+        "translatedText": "A String", # Text translated into the target language.
       },
     ],
   }</pre>
@@ -162,14 +162,14 @@ Returns:
     { # The main language translation response message.
     "translations": [ # Translations contains list of translation results of given text
       {
-        "translatedText": "A String", # Text translated into the target language.
-        "model": "A String", # The `model` type used for this translation. Valid values are
-            # listed in public documentation. Can be different from requested `model`.
-            # Present only if specific model type was explicitly requested.
         "detectedSourceLanguage": "A String", # The source language of the initial request, detected automatically, if
             # no source language was passed within the initial request. If the
             # source language was passed, auto-detection of the language will not
             # occur and this field will be empty.
+        "model": "A String", # The `model` type used for this translation. Valid values are
+            # listed in public documentation. Can be different from requested `model`.
+            # Present only if specific model type was explicitly requested.
+        "translatedText": "A String", # Text translated into the target language.
       },
     ],
   }</pre>

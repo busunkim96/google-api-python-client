@@ -78,7 +78,7 @@ h1, h2, h3 {
   <code><a href="#get">get(name, x__xgafv=None)</a></code></p>
 <p class="firstline">Gets information about a particular instance configuration.</p>
 <p class="toc_element">
-  <code><a href="#list">list(parent, pageToken=None, x__xgafv=None, pageSize=None)</a></code></p>
+  <code><a href="#list">list(parent, pageSize=None, pageToken=None, x__xgafv=None)</a></code></p>
 <p class="firstline">Lists the supported instance configurations for a given project.</p>
 <p class="toc_element">
   <code><a href="#list_next">list_next(previous_request, previous_response)</a></code></p>
@@ -105,17 +105,30 @@ Returns:
     "name": "A String", # A unique identifier for the instance configuration.  Values
         # are of the form
         # `projects/<project>/instanceConfigs/a-z*`
+    "replicas": [ # The geographic placement of nodes in this instance configuration and their
+        # replication properties.
+      {
+        "defaultLeaderLocation": True or False, # If true, this location is designated as the default leader location where
+            # leader replicas are placed. See the [region types
+            # documentation](https://cloud.google.com/spanner/docs/instances#region_types)
+            # for more details.
+        "type": "A String", # The type of replica.
+        "location": "A String", # The location of the serving resources, e.g. "us-central1".
+      },
+    ],
   }</pre>
 </div>
 
 <div class="method">
-    <code class="details" id="list">list(parent, pageToken=None, x__xgafv=None, pageSize=None)</code>
+    <code class="details" id="list">list(parent, pageSize=None, pageToken=None, x__xgafv=None)</code>
   <pre>Lists the supported instance configurations for a given project.
 
 Args:
   parent: string, Required. The name of the project for which a list of supported instance
 configurations is requested. Values are of the form
 `projects/<project>`. (required)
+  pageSize: integer, Number of instance configurations to be returned in the response. If 0 or
+less, defaults to the server's maximum allowed page size.
   pageToken: string, If non-empty, `page_token` should contain a
 next_page_token
 from a previous ListInstanceConfigsResponse.
@@ -123,8 +136,6 @@ from a previous ListInstanceConfigsResponse.
     Allowed values
       1 - v1 error format
       2 - v2 error format
-  pageSize: integer, Number of instance configurations to be returned in the response. If 0 or
-less, defaults to the server's maximum allowed page size.
 
 Returns:
   An object of the form:
@@ -140,6 +151,17 @@ Returns:
         "name": "A String", # A unique identifier for the instance configuration.  Values
             # are of the form
             # `projects/<project>/instanceConfigs/a-z*`
+        "replicas": [ # The geographic placement of nodes in this instance configuration and their
+            # replication properties.
+          {
+            "defaultLeaderLocation": True or False, # If true, this location is designated as the default leader location where
+                # leader replicas are placed. See the [region types
+                # documentation](https://cloud.google.com/spanner/docs/instances#region_types)
+                # for more details.
+            "type": "A String", # The type of replica.
+            "location": "A String", # The location of the serving resources, e.g. "us-central1".
+          },
+        ],
       },
     ],
   }</pre>

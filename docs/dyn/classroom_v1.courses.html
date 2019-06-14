@@ -80,6 +80,11 @@ h1, h2, h3 {
 <p class="firstline">Returns the aliases Resource.</p>
 
 <p class="toc_element">
+  <code><a href="classroom_v1.courses.announcements.html">announcements()</a></code>
+</p>
+<p class="firstline">Returns the announcements Resource.</p>
+
+<p class="toc_element">
   <code><a href="classroom_v1.courses.courseWork.html">courseWork()</a></code>
 </p>
 <p class="firstline">Returns the courseWork Resource.</p>
@@ -93,6 +98,11 @@ h1, h2, h3 {
   <code><a href="classroom_v1.courses.teachers.html">teachers()</a></code>
 </p>
 <p class="firstline">Returns the teachers Resource.</p>
+
+<p class="toc_element">
+  <code><a href="classroom_v1.courses.topics.html">topics()</a></code>
+</p>
+<p class="firstline">Returns the topics Resource.</p>
 
 <p class="toc_element">
   <code><a href="#create">create(body, x__xgafv=None)</a></code></p>
@@ -196,10 +206,10 @@ Args:
                 # Read-only.
           },
           "driveFile": { # Representation of a Google Drive file. # Google Drive file attachment.
-            "thumbnailUrl": "A String", # URL of a thumbnail image of the Drive item.
+            "alternateLink": "A String", # URL that can be used to access the Drive item.
                 #
                 # Read-only.
-            "alternateLink": "A String", # URL that can be used to access the Drive item.
+            "thumbnailUrl": "A String", # URL of a thumbnail image of the Drive item.
                 #
                 # Read-only.
             "id": "A String", # Drive API resource ID.
@@ -208,10 +218,10 @@ Args:
                 # Read-only.
           },
           "youTubeVideo": { # YouTube video item. # Youtube video attachment.
-            "thumbnailUrl": "A String", # URL of a thumbnail image of the YouTube video.
+            "alternateLink": "A String", # URL that can be used to view the YouTube video.
                 #
                 # Read-only.
-            "alternateLink": "A String", # URL that can be used to view the YouTube video.
+            "thumbnailUrl": "A String", # URL of a thumbnail image of the YouTube video.
                 #
                 # Read-only.
             "id": "A String", # YouTube API resource ID.
@@ -238,10 +248,15 @@ Args:
       "title": "A String", # Title for this set.
     },
   ],
+  "calendarId": "A String", # The Calendar ID for a calendar that all course members can see, to which
+      # Classroom adds events for course work and announcements in the course.
+      # 
+      # Read-only.
   "teacherFolder": { # Representation of a Google Drive folder. # Information about a Drive Folder that is shared with all teachers of the
       # course.
       # 
-      # This field will only be set for teachers of the course and domain administrators.
+      # This field will only be set for teachers of the course and domain
+      # administrators.
       # 
       # Read-only.
     "alternateLink": "A String", # URL that can be used to access the Drive folder.
@@ -252,6 +267,8 @@ Args:
         #
         # Read-only.
   },
+  "courseState": "A String", # State of the course.
+      # If unspecified, the default state is `PROVISIONED`.
   "ownerId": "A String", # The identifier of the owner of a course.
       # 
       # When specified as a parameter of a
@@ -263,10 +280,9 @@ Args:
       # * the email address of the user
       # * the string literal `"me"`, indicating the requesting user
       # 
-      # This must be set in a create request. Specifying this field in a course
-      # update mask results in an `INVALID_ARGUMENT` error.
-  "courseState": "A String", # State of the course.
-      # If unspecified, the default state is `PROVISIONED`.
+      # This must be set in a create request. Admins can also specify this field
+      # in a patch course request to
+      # transfer ownership. In other contexts, it is read-only.
   "id": "A String", # Identifier for this course assigned by Classroom.
       # 
       # When
@@ -355,10 +371,10 @@ Returns:
                   # Read-only.
             },
             "driveFile": { # Representation of a Google Drive file. # Google Drive file attachment.
-              "thumbnailUrl": "A String", # URL of a thumbnail image of the Drive item.
+              "alternateLink": "A String", # URL that can be used to access the Drive item.
                   #
                   # Read-only.
-              "alternateLink": "A String", # URL that can be used to access the Drive item.
+              "thumbnailUrl": "A String", # URL of a thumbnail image of the Drive item.
                   #
                   # Read-only.
               "id": "A String", # Drive API resource ID.
@@ -367,10 +383,10 @@ Returns:
                   # Read-only.
             },
             "youTubeVideo": { # YouTube video item. # Youtube video attachment.
-              "thumbnailUrl": "A String", # URL of a thumbnail image of the YouTube video.
+              "alternateLink": "A String", # URL that can be used to view the YouTube video.
                   #
                   # Read-only.
-              "alternateLink": "A String", # URL that can be used to view the YouTube video.
+              "thumbnailUrl": "A String", # URL of a thumbnail image of the YouTube video.
                   #
                   # Read-only.
               "id": "A String", # YouTube API resource ID.
@@ -397,10 +413,15 @@ Returns:
         "title": "A String", # Title for this set.
       },
     ],
+    "calendarId": "A String", # The Calendar ID for a calendar that all course members can see, to which
+        # Classroom adds events for course work and announcements in the course.
+        #
+        # Read-only.
     "teacherFolder": { # Representation of a Google Drive folder. # Information about a Drive Folder that is shared with all teachers of the
         # course.
         #
-        # This field will only be set for teachers of the course and domain administrators.
+        # This field will only be set for teachers of the course and domain
+        # administrators.
         #
         # Read-only.
       "alternateLink": "A String", # URL that can be used to access the Drive folder.
@@ -411,6 +432,8 @@ Returns:
           #
           # Read-only.
     },
+    "courseState": "A String", # State of the course.
+        # If unspecified, the default state is `PROVISIONED`.
     "ownerId": "A String", # The identifier of the owner of a course.
         #
         # When specified as a parameter of a
@@ -422,10 +445,9 @@ Returns:
         # * the email address of the user
         # * the string literal `"me"`, indicating the requesting user
         #
-        # This must be set in a create request. Specifying this field in a course
-        # update mask results in an `INVALID_ARGUMENT` error.
-    "courseState": "A String", # State of the course.
-        # If unspecified, the default state is `PROVISIONED`.
+        # This must be set in a create request. Admins can also specify this field
+        # in a patch course request to
+        # transfer ownership. In other contexts, it is read-only.
     "id": "A String", # Identifier for this course assigned by Classroom.
         #
         # When
@@ -563,10 +585,10 @@ Returns:
                   # Read-only.
             },
             "driveFile": { # Representation of a Google Drive file. # Google Drive file attachment.
-              "thumbnailUrl": "A String", # URL of a thumbnail image of the Drive item.
+              "alternateLink": "A String", # URL that can be used to access the Drive item.
                   #
                   # Read-only.
-              "alternateLink": "A String", # URL that can be used to access the Drive item.
+              "thumbnailUrl": "A String", # URL of a thumbnail image of the Drive item.
                   #
                   # Read-only.
               "id": "A String", # Drive API resource ID.
@@ -575,10 +597,10 @@ Returns:
                   # Read-only.
             },
             "youTubeVideo": { # YouTube video item. # Youtube video attachment.
-              "thumbnailUrl": "A String", # URL of a thumbnail image of the YouTube video.
+              "alternateLink": "A String", # URL that can be used to view the YouTube video.
                   #
                   # Read-only.
-              "alternateLink": "A String", # URL that can be used to view the YouTube video.
+              "thumbnailUrl": "A String", # URL of a thumbnail image of the YouTube video.
                   #
                   # Read-only.
               "id": "A String", # YouTube API resource ID.
@@ -605,10 +627,15 @@ Returns:
         "title": "A String", # Title for this set.
       },
     ],
+    "calendarId": "A String", # The Calendar ID for a calendar that all course members can see, to which
+        # Classroom adds events for course work and announcements in the course.
+        #
+        # Read-only.
     "teacherFolder": { # Representation of a Google Drive folder. # Information about a Drive Folder that is shared with all teachers of the
         # course.
         #
-        # This field will only be set for teachers of the course and domain administrators.
+        # This field will only be set for teachers of the course and domain
+        # administrators.
         #
         # Read-only.
       "alternateLink": "A String", # URL that can be used to access the Drive folder.
@@ -619,6 +646,8 @@ Returns:
           #
           # Read-only.
     },
+    "courseState": "A String", # State of the course.
+        # If unspecified, the default state is `PROVISIONED`.
     "ownerId": "A String", # The identifier of the owner of a course.
         #
         # When specified as a parameter of a
@@ -630,10 +659,9 @@ Returns:
         # * the email address of the user
         # * the string literal `"me"`, indicating the requesting user
         #
-        # This must be set in a create request. Specifying this field in a course
-        # update mask results in an `INVALID_ARGUMENT` error.
-    "courseState": "A String", # State of the course.
-        # If unspecified, the default state is `PROVISIONED`.
+        # This must be set in a create request. Admins can also specify this field
+        # in a patch course request to
+        # transfer ownership. In other contexts, it is read-only.
     "id": "A String", # Identifier for this course assigned by Classroom.
         #
         # When
@@ -660,7 +688,8 @@ Returns:
 <div class="method">
     <code class="details" id="list">list(studentId=None, pageSize=None, courseStates=None, teacherId=None, pageToken=None, x__xgafv=None)</code>
   <pre>Returns a list of courses that the requesting user is permitted to view,
-restricted to those that match the request.
+restricted to those that match the request. Returned courses are ordered by
+creation time, with the most recently created coming first.
 
 This method returns the following error codes:
 
@@ -764,10 +793,10 @@ Returns:
                       # Read-only.
                 },
                 "driveFile": { # Representation of a Google Drive file. # Google Drive file attachment.
-                  "thumbnailUrl": "A String", # URL of a thumbnail image of the Drive item.
+                  "alternateLink": "A String", # URL that can be used to access the Drive item.
                       #
                       # Read-only.
-                  "alternateLink": "A String", # URL that can be used to access the Drive item.
+                  "thumbnailUrl": "A String", # URL of a thumbnail image of the Drive item.
                       #
                       # Read-only.
                   "id": "A String", # Drive API resource ID.
@@ -776,10 +805,10 @@ Returns:
                       # Read-only.
                 },
                 "youTubeVideo": { # YouTube video item. # Youtube video attachment.
-                  "thumbnailUrl": "A String", # URL of a thumbnail image of the YouTube video.
+                  "alternateLink": "A String", # URL that can be used to view the YouTube video.
                       #
                       # Read-only.
-                  "alternateLink": "A String", # URL that can be used to view the YouTube video.
+                  "thumbnailUrl": "A String", # URL of a thumbnail image of the YouTube video.
                       #
                       # Read-only.
                   "id": "A String", # YouTube API resource ID.
@@ -806,10 +835,15 @@ Returns:
             "title": "A String", # Title for this set.
           },
         ],
+        "calendarId": "A String", # The Calendar ID for a calendar that all course members can see, to which
+            # Classroom adds events for course work and announcements in the course.
+            #
+            # Read-only.
         "teacherFolder": { # Representation of a Google Drive folder. # Information about a Drive Folder that is shared with all teachers of the
             # course.
             #
-            # This field will only be set for teachers of the course and domain administrators.
+            # This field will only be set for teachers of the course and domain
+            # administrators.
             #
             # Read-only.
           "alternateLink": "A String", # URL that can be used to access the Drive folder.
@@ -820,6 +854,8 @@ Returns:
               #
               # Read-only.
         },
+        "courseState": "A String", # State of the course.
+            # If unspecified, the default state is `PROVISIONED`.
         "ownerId": "A String", # The identifier of the owner of a course.
             #
             # When specified as a parameter of a
@@ -831,10 +867,9 @@ Returns:
             # * the email address of the user
             # * the string literal `"me"`, indicating the requesting user
             #
-            # This must be set in a create request. Specifying this field in a course
-            # update mask results in an `INVALID_ARGUMENT` error.
-        "courseState": "A String", # State of the course.
-            # If unspecified, the default state is `PROVISIONED`.
+            # This must be set in a create request. Admins can also specify this field
+            # in a patch course request to
+            # transfer ownership. In other contexts, it is read-only.
         "id": "A String", # Identifier for this course assigned by Classroom.
             #
             # When
@@ -953,10 +988,10 @@ alias. (required)
                 # Read-only.
           },
           "driveFile": { # Representation of a Google Drive file. # Google Drive file attachment.
-            "thumbnailUrl": "A String", # URL of a thumbnail image of the Drive item.
+            "alternateLink": "A String", # URL that can be used to access the Drive item.
                 #
                 # Read-only.
-            "alternateLink": "A String", # URL that can be used to access the Drive item.
+            "thumbnailUrl": "A String", # URL of a thumbnail image of the Drive item.
                 #
                 # Read-only.
             "id": "A String", # Drive API resource ID.
@@ -965,10 +1000,10 @@ alias. (required)
                 # Read-only.
           },
           "youTubeVideo": { # YouTube video item. # Youtube video attachment.
-            "thumbnailUrl": "A String", # URL of a thumbnail image of the YouTube video.
+            "alternateLink": "A String", # URL that can be used to view the YouTube video.
                 #
                 # Read-only.
-            "alternateLink": "A String", # URL that can be used to view the YouTube video.
+            "thumbnailUrl": "A String", # URL of a thumbnail image of the YouTube video.
                 #
                 # Read-only.
             "id": "A String", # YouTube API resource ID.
@@ -995,10 +1030,15 @@ alias. (required)
       "title": "A String", # Title for this set.
     },
   ],
+  "calendarId": "A String", # The Calendar ID for a calendar that all course members can see, to which
+      # Classroom adds events for course work and announcements in the course.
+      # 
+      # Read-only.
   "teacherFolder": { # Representation of a Google Drive folder. # Information about a Drive Folder that is shared with all teachers of the
       # course.
       # 
-      # This field will only be set for teachers of the course and domain administrators.
+      # This field will only be set for teachers of the course and domain
+      # administrators.
       # 
       # Read-only.
     "alternateLink": "A String", # URL that can be used to access the Drive folder.
@@ -1009,6 +1049,8 @@ alias. (required)
         #
         # Read-only.
   },
+  "courseState": "A String", # State of the course.
+      # If unspecified, the default state is `PROVISIONED`.
   "ownerId": "A String", # The identifier of the owner of a course.
       # 
       # When specified as a parameter of a
@@ -1020,10 +1062,9 @@ alias. (required)
       # * the email address of the user
       # * the string literal `"me"`, indicating the requesting user
       # 
-      # This must be set in a create request. Specifying this field in a course
-      # update mask results in an `INVALID_ARGUMENT` error.
-  "courseState": "A String", # State of the course.
-      # If unspecified, the default state is `PROVISIONED`.
+      # This must be set in a create request. Admins can also specify this field
+      # in a patch course request to
+      # transfer ownership. In other contexts, it is read-only.
   "id": "A String", # Identifier for this course assigned by Classroom.
       # 
       # When
@@ -1056,6 +1097,11 @@ fields are specified. The following fields are valid:
 * `description`
 * `room`
 * `courseState`
+* `ownerId`
+
+Note: patches to ownerId are treated as being effective immediately, but in
+practice it may take some time for the ownership transfer of all affected
+resources to complete.
 
 When set in a query parameter, this field should be specified as
 
@@ -1126,10 +1172,10 @@ Returns:
                   # Read-only.
             },
             "driveFile": { # Representation of a Google Drive file. # Google Drive file attachment.
-              "thumbnailUrl": "A String", # URL of a thumbnail image of the Drive item.
+              "alternateLink": "A String", # URL that can be used to access the Drive item.
                   #
                   # Read-only.
-              "alternateLink": "A String", # URL that can be used to access the Drive item.
+              "thumbnailUrl": "A String", # URL of a thumbnail image of the Drive item.
                   #
                   # Read-only.
               "id": "A String", # Drive API resource ID.
@@ -1138,10 +1184,10 @@ Returns:
                   # Read-only.
             },
             "youTubeVideo": { # YouTube video item. # Youtube video attachment.
-              "thumbnailUrl": "A String", # URL of a thumbnail image of the YouTube video.
+              "alternateLink": "A String", # URL that can be used to view the YouTube video.
                   #
                   # Read-only.
-              "alternateLink": "A String", # URL that can be used to view the YouTube video.
+              "thumbnailUrl": "A String", # URL of a thumbnail image of the YouTube video.
                   #
                   # Read-only.
               "id": "A String", # YouTube API resource ID.
@@ -1168,10 +1214,15 @@ Returns:
         "title": "A String", # Title for this set.
       },
     ],
+    "calendarId": "A String", # The Calendar ID for a calendar that all course members can see, to which
+        # Classroom adds events for course work and announcements in the course.
+        #
+        # Read-only.
     "teacherFolder": { # Representation of a Google Drive folder. # Information about a Drive Folder that is shared with all teachers of the
         # course.
         #
-        # This field will only be set for teachers of the course and domain administrators.
+        # This field will only be set for teachers of the course and domain
+        # administrators.
         #
         # Read-only.
       "alternateLink": "A String", # URL that can be used to access the Drive folder.
@@ -1182,6 +1233,8 @@ Returns:
           #
           # Read-only.
     },
+    "courseState": "A String", # State of the course.
+        # If unspecified, the default state is `PROVISIONED`.
     "ownerId": "A String", # The identifier of the owner of a course.
         #
         # When specified as a parameter of a
@@ -1193,10 +1246,9 @@ Returns:
         # * the email address of the user
         # * the string literal `"me"`, indicating the requesting user
         #
-        # This must be set in a create request. Specifying this field in a course
-        # update mask results in an `INVALID_ARGUMENT` error.
-    "courseState": "A String", # State of the course.
-        # If unspecified, the default state is `PROVISIONED`.
+        # This must be set in a create request. Admins can also specify this field
+        # in a patch course request to
+        # transfer ownership. In other contexts, it is read-only.
     "id": "A String", # Identifier for this course assigned by Classroom.
         #
         # When
@@ -1297,10 +1349,10 @@ alias. (required)
                 # Read-only.
           },
           "driveFile": { # Representation of a Google Drive file. # Google Drive file attachment.
-            "thumbnailUrl": "A String", # URL of a thumbnail image of the Drive item.
+            "alternateLink": "A String", # URL that can be used to access the Drive item.
                 #
                 # Read-only.
-            "alternateLink": "A String", # URL that can be used to access the Drive item.
+            "thumbnailUrl": "A String", # URL of a thumbnail image of the Drive item.
                 #
                 # Read-only.
             "id": "A String", # Drive API resource ID.
@@ -1309,10 +1361,10 @@ alias. (required)
                 # Read-only.
           },
           "youTubeVideo": { # YouTube video item. # Youtube video attachment.
-            "thumbnailUrl": "A String", # URL of a thumbnail image of the YouTube video.
+            "alternateLink": "A String", # URL that can be used to view the YouTube video.
                 #
                 # Read-only.
-            "alternateLink": "A String", # URL that can be used to view the YouTube video.
+            "thumbnailUrl": "A String", # URL of a thumbnail image of the YouTube video.
                 #
                 # Read-only.
             "id": "A String", # YouTube API resource ID.
@@ -1339,10 +1391,15 @@ alias. (required)
       "title": "A String", # Title for this set.
     },
   ],
+  "calendarId": "A String", # The Calendar ID for a calendar that all course members can see, to which
+      # Classroom adds events for course work and announcements in the course.
+      # 
+      # Read-only.
   "teacherFolder": { # Representation of a Google Drive folder. # Information about a Drive Folder that is shared with all teachers of the
       # course.
       # 
-      # This field will only be set for teachers of the course and domain administrators.
+      # This field will only be set for teachers of the course and domain
+      # administrators.
       # 
       # Read-only.
     "alternateLink": "A String", # URL that can be used to access the Drive folder.
@@ -1353,6 +1410,8 @@ alias. (required)
         #
         # Read-only.
   },
+  "courseState": "A String", # State of the course.
+      # If unspecified, the default state is `PROVISIONED`.
   "ownerId": "A String", # The identifier of the owner of a course.
       # 
       # When specified as a parameter of a
@@ -1364,10 +1423,9 @@ alias. (required)
       # * the email address of the user
       # * the string literal `"me"`, indicating the requesting user
       # 
-      # This must be set in a create request. Specifying this field in a course
-      # update mask results in an `INVALID_ARGUMENT` error.
-  "courseState": "A String", # State of the course.
-      # If unspecified, the default state is `PROVISIONED`.
+      # This must be set in a create request. Admins can also specify this field
+      # in a patch course request to
+      # transfer ownership. In other contexts, it is read-only.
   "id": "A String", # Identifier for this course assigned by Classroom.
       # 
       # When
@@ -1456,10 +1514,10 @@ Returns:
                   # Read-only.
             },
             "driveFile": { # Representation of a Google Drive file. # Google Drive file attachment.
-              "thumbnailUrl": "A String", # URL of a thumbnail image of the Drive item.
+              "alternateLink": "A String", # URL that can be used to access the Drive item.
                   #
                   # Read-only.
-              "alternateLink": "A String", # URL that can be used to access the Drive item.
+              "thumbnailUrl": "A String", # URL of a thumbnail image of the Drive item.
                   #
                   # Read-only.
               "id": "A String", # Drive API resource ID.
@@ -1468,10 +1526,10 @@ Returns:
                   # Read-only.
             },
             "youTubeVideo": { # YouTube video item. # Youtube video attachment.
-              "thumbnailUrl": "A String", # URL of a thumbnail image of the YouTube video.
+              "alternateLink": "A String", # URL that can be used to view the YouTube video.
                   #
                   # Read-only.
-              "alternateLink": "A String", # URL that can be used to view the YouTube video.
+              "thumbnailUrl": "A String", # URL of a thumbnail image of the YouTube video.
                   #
                   # Read-only.
               "id": "A String", # YouTube API resource ID.
@@ -1498,10 +1556,15 @@ Returns:
         "title": "A String", # Title for this set.
       },
     ],
+    "calendarId": "A String", # The Calendar ID for a calendar that all course members can see, to which
+        # Classroom adds events for course work and announcements in the course.
+        #
+        # Read-only.
     "teacherFolder": { # Representation of a Google Drive folder. # Information about a Drive Folder that is shared with all teachers of the
         # course.
         #
-        # This field will only be set for teachers of the course and domain administrators.
+        # This field will only be set for teachers of the course and domain
+        # administrators.
         #
         # Read-only.
       "alternateLink": "A String", # URL that can be used to access the Drive folder.
@@ -1512,6 +1575,8 @@ Returns:
           #
           # Read-only.
     },
+    "courseState": "A String", # State of the course.
+        # If unspecified, the default state is `PROVISIONED`.
     "ownerId": "A String", # The identifier of the owner of a course.
         #
         # When specified as a parameter of a
@@ -1523,10 +1588,9 @@ Returns:
         # * the email address of the user
         # * the string literal `"me"`, indicating the requesting user
         #
-        # This must be set in a create request. Specifying this field in a course
-        # update mask results in an `INVALID_ARGUMENT` error.
-    "courseState": "A String", # State of the course.
-        # If unspecified, the default state is `PROVISIONED`.
+        # This must be set in a create request. Admins can also specify this field
+        # in a patch course request to
+        # transfer ownership. In other contexts, it is read-only.
     "id": "A String", # Identifier for this course assigned by Classroom.
         #
         # When
